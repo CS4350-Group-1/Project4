@@ -1,0 +1,42 @@
+body {background-color:#333333;}
+
+h1 {font-size:24px;
+    font-family:"Ariel", sans-serif;
+    font-weight: bold;
+    background-color: #E65C00;}
+
+h2 {width:300px;
+    padding-left: 5px;
+    color: white;
+    background-color:#990000;
+    font-size:16px;
+    font-family:"Goudy Old Style",Times, serif;
+    font-weight: bold;
+    text-decoration-line:underline}
+
+h3 {font-size:16px;
+    font-family:"Goudy Old Style",Times, serif;
+    font-weight: lighter}
+
+p  {font-size:16px;
+    font-family:"Ariel", sans-serif;
+    font-weight: bold;
+    color: #333333;}
+
+/*CSS for the main div tag*/
+#mainDiv {width:800px;
+          height:500px;
+          margin-top: 75px;
+          border-radius: 20px;
+          background-color:white;
+          box-shadow: -5px 5px 5px  #000000;
+          padding-top:10px;
+          position:absolute;
+          left:50%;
+          margin-left:-400px;
+          text-align: center}
+
+
+/*CSS for the Request Form elements*/
+#username  {width:100px;}
+#password  {width:100px}
