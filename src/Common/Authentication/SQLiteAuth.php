@@ -1,7 +1,7 @@
 <?php
 
 namespace Common\Authentication;
-require 'IAuthentication.php';
+//require 'IAuthentication.php';
 use PDO;
 
 class SQLiteAuth implements IAuthentication

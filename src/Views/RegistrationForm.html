@@ -19,20 +19,20 @@
 				// AJAX Code To Submit Form.
 					$.ajax({
 						type: "POST",
-						url: "/",
+						url: "/newuser",
 						data: dataString,
 						cache: false,
-                        dataType:'JSON',
+                                                dataType:'JSON',
                         statusCode: 
                         {
                             200: function()
                             {
-                                alert('success');
-                                location.href = "/profile"
+                                alert('user created');
+                                location.href = "/"
                             },
                             401: function() 
                             {
-                                alert('not authorized');
+                                alert('creation failed.');
                                 
                             }
 
