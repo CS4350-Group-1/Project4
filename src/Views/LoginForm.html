@@ -9,6 +9,12 @@
                     $("#twitter").click(function()
                     {
                         alert ("twitter pressed");
+                         $.ajax({
+                                type: "POST",
+                                url: "/twitter"
+                                }
+                            });
+
                     });
                 });
 		$(document).ready(function()

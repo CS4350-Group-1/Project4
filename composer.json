@@ -1,7 +1,10 @@
 {
     "require": {
         "slim/slim": "~2.6",
-        "guzzle/guzzle": "~3.9"
+        "guzzlehttp/guzzle": "~5.0",
+        "guzzlehttp/log-subscriber": "1.*",
+        "monolog/monolog": "*",
+        "guzzlehttp/oauth-subscriber": "*"
     },
     "require-dev": {
         "phpdocumentor/phpdocumentor": "~2.8",
