@@ -8,7 +8,9 @@ class SQLiteReg
     public function __construct($username, $password)
     {
         $this->username=$username;
-        $this->password=$password;
+        
+        if($password!==NULL)
+            $this->password=$password;
         
         try
         {
@@ -24,9 +26,18 @@ class SQLiteReg
     }
     public function getProfile()
     {
-        $data->$this->conn->query('SELECT firstname, lastname, phone FROM Test WHERE UserID = '.$this->conn->quote($this->username));
-        return $data->fetchAll();
-        
+        $data=$this->conn->query('SELECT username, first, last, email, twitter, data FROM Test WHERE username ='.$this->conn->quote($this->username));
+        foreach ($data->fetchAll() as $i)
+        {
+            //echo "test1";
+            //$S = "<div><p>username: $i[0]<br />firstname: $i[1]<br />lastname: $i[2]<br />email: $i[3]<br />twitter: $i[4]<br />data: $i[5]<br /></p></div>";
+            $S = array($i[0], $i[1], $i[2], $i[3], $i[4], $i[5]);
+            //var_dump($S);
+            //echo $S;
+            return $S;
+            //echo var_dump($i);
+            //echo "test2";
+        }
     }
     
     
