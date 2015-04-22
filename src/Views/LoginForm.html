@@ -42,11 +42,12 @@
                                         dataType:'JSON',
                                         statusCode: 
                                         {
-                                            200: function(data)
+                                            200: function(result)
                                             {                                              
-                                                
+                                                var profile = "<div><p>" + result["username"] + "<br />" + result["firstname"] + "<br />" + result["lastname"]+ "<br />"+result["email"]+"<br />"+ result["twitter"]+ "<br />" + result["date"] + "</p></div>";
+
                                                 //alert ("hello");
-                                               $("#loginForm").html(data.responseText);
+                                               $("#form").html(profile);
                                                 //document.getElementById("loginForm").innerHTML;
                                                 //location.href = "/profile"+'?name='+name
                                             },
@@ -69,23 +70,27 @@
     <body>
         <div id="mainDiv">
             <div id="loginForm">
-            	<h1> Please Sign In </h1> <br />
-                <p>
-                    Valid Auth is: SQLite / Litepass <br /><br />
-                	<label>Username: </label>
-						<input id="name" type="text"/><br /><br />
-                	<label>Password: </label>
-						<input id="password" type="password"/><br /><br />
-                	<input id="submit" type="button" value="Submit" /><br />
-                        <p>
-                        <button id="twitter">
-                            <img src="https://g.twimg.com/dev/sites/default/files/images_documentation/sign-in-with-twitter-gray.png" alt="Sign in with Twitter">
-                        </button>
-<!--                        </p>
-                        <p>
-                        <input type="image" name="twitter" src="https://g.twimg.com/dev/sites/default/files/images_documentation/sign-in-with-twitter-gray.png" alt="twitter">
-                        </p>-->
-                        
+            	<div id = "form">
+                        <h1> Please Sign In </h1> <br />
+                    <p>
+                        Valid Auth is: SQLite / Litepass <br /><br />
+                    	<label>Username: </label>
+    						<input id="name" type="text"/><br /><br />
+                    	<label>Password: </label>
+    						<input id="password" type="password"/><br /><br />
+                    	<input id="submit" type="button" value="Submit" /><br />
+                            <p>
+                                
+    <!--                        </p>
+                            <p>
+                            <input type="image" name="twitter" src="https://g.twimg.com/dev/sites/default/files/images_documentation/sign-in-with-twitter-gray.png" alt="twitter">
+                            </p>-->
+                  </div>
+                  <div id= "twitter">
+                            <button id="twitter" onclick = "window.location = 'https://twitter.com';">
+                                <img src="https://g.twimg.com/dev/sites/default/files/images_documentation/sign-in-with-twitter-gray.png" alt="Sign in with Twitter">
+                            </button>
+                  </div>      
             </div>
         </div>
     </body>
