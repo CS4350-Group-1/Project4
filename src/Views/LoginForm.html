@@ -42,28 +42,11 @@
                                         dataType:'JSON',
                                         statusCode: 
                                         {
-                                            200: function()
+                                            200: function(result)
                                             {
-                                                //alert('success');
-//                                                var temp = "<TABLE> <TD><TR>TEST PAGE INFORMATION: " + dataString
-//                                                
-                                                $.ajax({
-                                                    type:"POST", 
-                                                    url: "/profileCheck", 
-                                                    data: name, 
-                                                    cache: false, 
-                                                    dataType:'JSON',
-                                                statusCode:
-                                                {
-                                                    200: function(result)
-                                                    {
-                                                        alert (result['0']);
-//                                                        $("loginForm").html(result);
-                                                        document.getElementById("loginForm").innerHTML = result[0];
-                                                        
-                                                    }
-                                                }});
-                                                //location.href = "/profile"+'?name='+name
+                                                var profile = "<div><p>"+result["username"]+"</br>"+result["firstname"]+"</br>"+result["lastname"]+"</br>"+result["email"]+"</br>"+result["twitter"]+"</p></div>"
+                                                $("#loginForm").html(profile);
+                                                
                                             },
                                             401: function() 
                                             {
@@ -93,15 +76,10 @@
 						<input id="password" type="password"/><br /><br />
                 	<input id="submit" type="button" value="Submit" /><br />
                         <p>
-                        <button id="twitter">
-                            <img src="https://g.twimg.com/dev/sites/default/files/images_documentation/sign-in-with-twitter-gray.png" alt="Sign in with Twitter">
-                        </button>
-<!--                        </p>
-                        <p>
-                        <input type="image" name="twitter" src="https://g.twimg.com/dev/sites/default/files/images_documentation/sign-in-with-twitter-gray.png" alt="twitter">
-                        </p>-->
+
                         
             </div>
         </div>
+
     </body>
 </html>

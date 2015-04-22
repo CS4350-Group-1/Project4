@@ -11,19 +11,30 @@
             
 	});
 
-        $app->post('/profileCheck', function() use ($app)
-        {
-            $user=$app->request()->params('name');
-            $pass =$app->request()->params('password');
-            
-            //fix this
-            $SQLReg = new \Common\Authentication\SQLiteReg($user,$pass);
-            //var_dump($SQLReg->getProfile());
-            //return $SQLReg->getProfile();
-            return(json_encode($SQLReg->getProfile()));
-            exit();
-            
-        });
+//        $app->post('/profileCheck', function() use ($app)
+//        {
+//            $user=$app->request()->params('name');
+//            $pass =$app->request()->params('password');
+//            
+//            //fix this
+//            $SQLReg = new \Common\Authentication\SQLiteReg($user,$pass);
+//            //var_dump($SQLReg->getProfile());
+////            echo json_encode($SQLReg->getProfile());
+////            $S =  $app->response->setBody(json_encode($SQLReg->getProfile()));
+////            echo $S;
+//            //echo $app->response->writeBody(json_encode($SQLReg->getProfile()));
+////            echo (json_encode($SQLReg->getProfile()));
+//            //var_dump($SQLReg->getProfile());
+////            $S = $SQLReg->getProfile();
+//////            echo $S;
+//////            $S = json_encode($SQLReg->getProfile());
+////            echo($S); 
+////            echo '{"test": "test"}';
+////            echo '{"test": "'.$S.'"}';
+////            return json_encode($app->response()->body('{"test": "'.$S.'"}'));
+//            exit();
+//            
+//        });
 
         $app->post('/newuser', function() use ($app)
         {
@@ -61,20 +72,26 @@
            if($SQLAuth->authenticateA($auth)!==1)
            {  
                 $app->response()->setStatus(403);
-                $app->response()->getStatus();
+                //$app->response()->getStatus();
                 return json_encode($app->response()->header('Need an authentication key? : localhost:8080/genAuth', 403));
            }
            if($SQLAuth->authenticate()!==1)
            {
                 $app->response()->setStatus(401);
-                $app->response()->getStatus();
+                //$app->response()->getStatus();
                 return json_encode($app->response()->header('Need to register? : localhost:8080/RegistrationForm', 401));
            }
            if($SQLAuth->authenticate()===1)
            {
                 $app->response()->setStatus(200);
-                $app->response()->getStatus();
-                return json_encode($app->response()->header('Login successful : localhost:8080/Profile', 200));
+                //$app->response()->getStatus();
+                $SQLReg = new \Common\Authentication\SQLiteReg($user,$pass);
+                $S = $SQLReg->getProfile();
+//                var_dump($S);
+                $S = json_encode($S);
+//                var_dump($S);
+                echo $S;
+                //return json_encode($app->response()->header('Login successful : localhost:8080/Profile', 200));
            }
         });
 

@@ -31,7 +31,8 @@ class SQLiteReg
         {
             //echo "test1";
             //$S = "<div><p>username: $i[0]<br />firstname: $i[1]<br />lastname: $i[2]<br />email: $i[3]<br />twitter: $i[4]<br />data: $i[5]<br /></p></div>";
-            $S = array($i[0], $i[1], $i[2], $i[3], $i[4], $i[5]);
+            //$S = array($i[0], $i[1], $i[2], $i[3], $i[4], $i[5]);
+            $S = array('username'=>$i[0],'firstname' => $i[1], 'lastname' => $i[2], 'email' => $i[3], 'twitter' => $i[4] ); 
             //var_dump($S);
             //echo $S;
             return $S;
