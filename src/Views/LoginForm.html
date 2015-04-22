@@ -42,27 +42,12 @@
                                         dataType:'JSON',
                                         statusCode: 
                                         {
-                                            200: function()
-                                            {
-                                                //alert('success');
-//                                                var temp = "<TABLE> <TD><TR>TEST PAGE INFORMATION: " + dataString
-//                                                
-                                                $.ajax({
-                                                    type:"POST", 
-                                                    url: "/profileCheck", 
-                                                    data: name, 
-                                                    cache: false, 
-                                                    dataType:'JSON',
-                                                statusCode:
-                                                {
-                                                    200: function(result)
-                                                    {
-                                                        alert (result['0']);
-//                                                        $("loginForm").html(result);
-                                                        document.getElementById("loginForm").innerHTML = result[0];
-                                                        
-                                                    }
-                                                }});
+                                            200: function(data)
+                                            {                                              
+                                                
+                                                //alert ("hello");
+                                               $("#loginForm").html(data.responseText);
+                                                //document.getElementById("loginForm").innerHTML;
                                                 //location.href = "/profile"+'?name='+name
                                             },
                                             401: function() 
@@ -79,7 +64,7 @@
                     });
                 });
 		</script>
-		<link rel="stylesheet" type="text/css" href="C:\Users\Jared\Documents\GitHub\Project4\public\css\Site_Style_Sheet.css">
+		<link rel="stylesheet" type="text/css" href="http://localhost/Project4/public/css/Site_Style_Sheet.css">
     </head>
     <body>
         <div id="mainDiv">

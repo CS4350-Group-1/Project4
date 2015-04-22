@@ -20,8 +20,9 @@
             $SQLReg = new \Common\Authentication\SQLiteReg($user,$pass);
             //var_dump($SQLReg->getProfile());
             //return $SQLReg->getProfile();
-            return(json_encode($SQLReg->getProfile()));
-            exit();
+            
+            //return(json_encode($SQLReg->getProfile()));
+            return;
             
         });
 
@@ -33,6 +34,7 @@
             $SQLRes = $SQLReg->registerNewUser();
             if($SQLRes!==1)
             {
+
                 $app->response()->setStatus(401);
                 echo $app->response()->getStatus();
                 return json_encode($app->response()->header('User failed to create.',401));
@@ -74,7 +76,9 @@
            {
                 $app->response()->setStatus(200);
                 $app->response()->getStatus();
-                return json_encode($app->response()->header('Login successful : localhost:8080/Profile', 200));
+                $app->response()->write("TESTING RESPONSE BODY");
+                echo "<h1>TESTING RESPONSE BODY</h1>";
+                return; //json_encode($app->response()->header('Login successful : localhost:8080/Profile', 200));
            }
         });
 
