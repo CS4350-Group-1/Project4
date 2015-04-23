@@ -5,12 +5,16 @@ use PDO;
 
 class SQLiteReg
 {
-    public function __construct($username, $password)
+    protected $user;
+    //public function __construct($username, $password)
+    public function __construct($param_user)
     {
-        $this->username=$username;
+        //$this->username=$username;
+        $this->user = $param_user;
+
         
-        if($password!==NULL)
-            $this->password=$password;
+        if($this->user->getPassword()!==NULL)
+            //$this->password=$password;
         
         try
         {
@@ -26,7 +30,9 @@ class SQLiteReg
     }
     public function getProfile()
     {
-        $data=$this->conn->query('SELECT username, first, last, email, twitter, data FROM Test WHERE username ='.$this->conn->quote($this->username));
+        //$data=$this->conn->query('SELECT username, first, last, email, twitter, data FROM Test WHERE username ='.$this->conn->quote($this->username));
+        $data=$this->conn->query('SELECT username, first, last, email, twitter, data FROM Test WHERE username ='.$this->conn->quote($this->user->getUsername()));
+        
         foreach ($data->fetchAll() as $i)
         {
             //echo "test1";
@@ -49,7 +55,8 @@ class SQLiteReg
     
     public function registerNewUser()
     {
-        $data=$this->conn->query('SELECT Username FROM Test WHERE UserName= '.$this->conn->quote($this->username));
+        //$data=$this->conn->query('SELECT Username FROM Test WHERE UserName= '.$this->conn->quote($this->username));
+        $data=$this->conn->query('SELECT Username FROM Test WHERE UserName= '.$this->conn->quote($this->user->getUsername()));
         
         $result=$data->fetchAll();
         
@@ -58,11 +65,20 @@ class SQLiteReg
             //false
             return 0;
         }
-        $this->conn->query('INSERT INTO Test (Username, Password) VALUES ('
-                .$this->conn->quote($this->username).','
-                    .$this->conn->quote($this->password).')');
-        
-        $data=$this->conn->query('SELECT Username FROM Test WHERE UserName= '.$this->conn->quote($this->username));
+        // $this->conn->query('INSERT INTO Test (Username, Password) VALUES ('
+        //         .$this->conn->quote($this->username).','
+        //             .$this->conn->quote($this->password).')');
+        $this->conn->query('INSERT INTO Test (username, password, first, last, email, twitter, data) VALUES ('
+            .$this->conn->quote($this->user->getUsername()).','
+            .$this->conn->quote($this->user->getPassword()).','
+            .$this->conn->quote($this->user->getFirstName()).','
+            .$this->conn->quote($this->user->getLastName()).','
+            .$this->conn->quote($this->user->getEmail()).','
+            .$this->conn->quote($this->user->getTwitterName()).','
+            .$this->conn->quote($this->user->getRegistrationDate()).')');
+
+        //$data=$this->conn->query('SELECT Username FROM Test WHERE UserName= '.$this->conn->quote($this->username));
+        $data=$this->conn->query('SELECT Username FROM Test WHERE UserName= '.$this->conn->quote($this->user->getUsername()));
 //        echo var_dump($data);
         $result=$data->fetchAll();
         

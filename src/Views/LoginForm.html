@@ -6,7 +6,7 @@
 		<script type="text/javascript">
                 $(document).ready(function()
                 {
-                    $("#twitter").click(function()
+                    $("#twitterButton").click(function()
                     {
                         $.ajax({
                                 type:"POST",
@@ -15,7 +15,7 @@
                                 dataType:"JSON"
                             
                         });
-                        //alert ("twitter pressed");
+                        alert ("twitter Authentication is currently unavailable");
                         
                     });
                 });
@@ -44,10 +44,21 @@
                                         {
                                             200: function(result)
                                             {                                              
-                                                var profile = "<div><p>" + result["username"] + "<br />" + result["firstname"] + "<br />" + result["lastname"]+ "<br />"+result["email"]+"<br />"+ result["twitter"]+ "<br />" + result["date"] + "</p></div>";
+                                                var profile = "<div><p>" 
+                                                                        + "Username: " + result["username"] + "<br />" 
+                                                                        + "Firstname: " + result["firstname"] + "<br />"
+                                                                        + "Lastname: " + result["lastname"]+ "<br />"
+                                                                        + "Email: " + result["email"] + "<br />"
+                                                                        + "Twitter Username: " + result["twitter"]+ "<br />" 
+                                                                        + "Registration Date: " + result["date"] + 
+                                                                "</p></div>";
+                                                var twitButton = "<button id=\"twitterButton\" onclick = \"window.location = 'https://twitter.com/" + result["twitter"] + "';\">" +
+                                                                 "<img src=\"https://g.twimg.com/Twitter_logo_blue.png\" alt=\"Go To Twitter Profile\" height = \"16\" width = \"16\">Go To Twitter Profile</button>";
+
 
                                                 //alert ("hello");
                                                $("#form").html(profile);
+                                               $("#twitter").html(twitButton);
                                                 //document.getElementById("loginForm").innerHTML;
                                                 //location.href = "/profile"+'?name='+name
                                             },
@@ -73,23 +84,20 @@
             	<div id = "form">
                         <h1> Please Sign In </h1> <br />
                     <p>
-                        Valid Auth is: SQLite / Litepass <br /><br />
+                        Valid Auth is: SQLite2 / Litepass <br /><br />
                     	<label>Username: </label>
     						<input id="name" type="text"/><br /><br />
                     	<label>Password: </label>
     						<input id="password" type="password"/><br /><br />
                     	<input id="submit" type="button" value="Submit" /><br />
                             <p>
-                                
-    <!--                        </p>
-                            <p>
-                            <input type="image" name="twitter" src="https://g.twimg.com/dev/sites/default/files/images_documentation/sign-in-with-twitter-gray.png" alt="twitter">
-                            </p>-->
+                                <button id="twitterButton">
+                                    <img src="https://g.twimg.com/Twitter_logo_blue.png" alt="SignIn To Twitter" height = "16" width = "16"> SignIn To Twitter
+                                </button>
+                            </p>
                   </div>
                   <div id= "twitter">
-                            <button id="twitter" onclick = "window.location = 'https://twitter.com';">
-                                <img src="https://g.twimg.com/dev/sites/default/files/images_documentation/sign-in-with-twitter-gray.png" alt="Sign in with Twitter">
-                            </button>
+                            
                   </div>      
             </div>
         </div>
