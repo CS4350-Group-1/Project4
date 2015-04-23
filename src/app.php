@@ -13,9 +13,19 @@
 
         $app->post('/newuser', function() use ($app)
         {
-            $user = $app->request->params('username');
-            $pass = $app->request->params('password'); 
-            $SQLReg = new \Common\Authentication\SQLiteReg($user,$pass);
+            //$user = $app->request->params('username');
+            //$pass = $app->request->params('password');
+
+            $user = new \Models\User($app->request->params('username'), $app->request->params('password'));
+            $user->setFirstName($app->request->params('firstname'));
+            $user->setLastName($app->request->params('lastname'));
+            $user->setEmail($app->request->params('email'));
+            $user->setTwitterName($app->request->params('twittername'));
+            $user->setRegistrationDate($app->request->params('date'));
+
+
+            //$SQLReg = new \Common\Authentication\SQLiteReg($user,$pass);
+            $SQLReg = new \Common\Authentication\SQLiteReg($user);
             $SQLRes = $SQLReg->registerNewUser();
             if($SQLRes!==1)
             {
@@ -34,17 +44,21 @@
             }
         }
         );
+
+
         $app->get('/genAuth', function ()
         {
             require_once realpath(__DIR__.DIRECTORY_SEPARATOR.'Views'.DIRECTORY_SEPARATOR.'genAuth.php');   
         });
+
+
         $app->post('/api',function()use($app){
            //echo 'api endpoint'; 
             //$data = $app->request->getBody();
-            $user = $app->request->params('username');
-            $pass = $app->request->params('password');
+            $username = $app->request->params('username');
+            $password = $app->request->params('password');
             $auth = $app->request->params('authKey');
-           $SQLAuth = new \Common\Authentication\SQLiteAuth($user,$pass);
+           $SQLAuth = new \Common\Authentication\SQLiteAuth($username, $password);
            if($SQLAuth->authenticateA($auth)!==1)
            {  
                 $app->response()->setStatus(403);
@@ -61,7 +75,9 @@
            {
                 $app->response()->setStatus(200);
                // $app->response()->getStatus();
-                $SQLReg = new \Common\Authentication\SQLiteReg($user, $pass);
+                $user = new \Models\User($username, $password);
+                $SQLReg = new \Common\Authentication\SQLiteReg($user);
+
                 $S = $SQLReg->getProfile();
                 $S = json_encode($S);
                 echo $S;

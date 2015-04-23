@@ -36,6 +36,13 @@ p  {font-size:16px;
           margin-left:-400px;
           text-align: center}
 
+#twitterButton {width: 170px;
+                height: 32px;
+                font-size:12px;
+                font-family:"Ariel", sans-serif;
+                font-weight: bold;
+                color: #333333;
+}
 
 /*CSS for the Request Form elements*/
 #username  {width:100px;}

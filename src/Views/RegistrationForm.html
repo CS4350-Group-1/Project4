@@ -8,9 +8,19 @@
 			$("#submit").click(function(){
 				var name = $("#name").val();
 				var password = $("#password").val();
+				var firstname = $("#firstname").val();
+				var lastname = $("#lastname").val();
+				var email = $("#email").val();
+				var twittername = $("#twittername").val();
+				var dateV = new Date ();
+
+				dateV = dateV.getMonth() + '/' + dateV.getDate() + '/' + dateV.getFullYear();
+				
 				// Returns successful data submission message when the entered information is stored in database.
-				var dataString = 'username='+ name + '&password='+ password;
-				if(name==''||password=='')
+				var dataString = 'username='+ name + '&password='+ password + '&firstname=' + firstname + '&lastname=' + lastname + '&email=' + email + '&twittername=' + twittername + '&date=' + dateV;
+				
+				
+				if(name=='' || password=='' || firstname == '' || lastname == '' || email == '' || twittername == '')
 				{
                                     alert("Please Fill All Fields");
 				}
@@ -22,7 +32,7 @@
 						url: "/newuser",
 						data: dataString,
 						cache: false,
-                                                dataType:'JSON',
+                        dataType:'JSON',
                         statusCode: 
                         {
                             200: function()
@@ -37,16 +47,8 @@
                             }
 
                         }
-//                                                error: function(jq,t,e)
-//                                                {alert(jq.status);}
-//						success: function(result)
-//						{
-//                                                    console.log('result');
-//                                                    alert('asdasdas');
-//                                                    //alert.html(result);
-//						}
-					})//.fail(function(data){debugger;alert('fasdasdasd');}).done(function(data){alert('success');})
-                                         ;       
+
+					});       
                                         
             
 
@@ -66,6 +68,14 @@
 						<input id="name" type="text"/><br /><br />
                 	<label>Password: </label>
 						<input id="password" type="password"/><br /><br />
+					<label>First Name: </label>
+						<input id="firstname" type="text"/><br /><br />
+					<label>Last Name: </label>
+						<input id="lastname" type="text"/><br /><br />
+					<label>Email: </label>
+						<input id="email" type="text"/><br /><br />
+					<label>Twitter Username: </label>
+						<input id="twittername" type="text"/><br /><br />
                 	<input id="submit" type="button" value="Create User" /><br />
             	</p>
             </div>
